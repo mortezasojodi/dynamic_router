@@ -18,7 +18,7 @@ class _MyAppState extends State<MyApp> {
   late PageStackRouterDelegate routerDelegate;
   @override
   void initState() {
-    final pageStack = PageStack(
+    pageStack = PageStack(
       bottomPage: SplashRoute(),
     );
     routerDelegate = PageStackRouterDelegate(
@@ -33,6 +33,7 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp.router(
       routerDelegate: routerDelegate,
       backButtonDispatcher: PageStackBackButtonDispatcher(pageStack),
+      routeInformationParser: const PageStackRouteInformationParser(),
     );
   }
 }

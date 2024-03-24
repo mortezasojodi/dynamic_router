@@ -109,7 +109,7 @@ class PPageStack<P extends PagePath> {
   }
 
   void pop(BuildContext context, [dynamic data]) {
-    if (_currentOverlay.length > 0) {
+    if (_currentOverlay.isNotEmpty) {
       var last = _currentOverlay.last;
       last.completer.complete(data);
       last.data.remove();
