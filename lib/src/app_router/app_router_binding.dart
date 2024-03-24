@@ -1,5 +1,5 @@
-import 'package:approuter/approuter.dart';
-import 'package:approuter/src/models/binding.dart';
+import 'package:dynamic_router/approuter.dart';
+import 'package:dynamic_router/src/models/binding.dart';
 import 'package:flutter/material.dart';
 
 class AppRouter {

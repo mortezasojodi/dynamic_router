@@ -1,4 +1,4 @@
-import 'package:approuter/approuter.dart';
+import 'package:dynamic_router/approuter.dart';
 import 'package:flutter/widgets.dart';
 
 class PageStackRouterDelegate extends RouterDelegate<PageStackConfiguration>

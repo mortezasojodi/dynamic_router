@@ -1,4 +1,4 @@
-name: approuter
+name: dynamic_router
 description: "router for Flutter based on Navigation Api"
 version: 0.0.1
 repository: https://github.com/mortezasojodi/approuter
