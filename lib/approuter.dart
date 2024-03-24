@@ -8,7 +8,7 @@
 /// The page states are then wrapped into widgets to form the navigator's stack.
 /// This simplifies state management: no need for providers, stateful widgets,
 /// manual bloc creation and disposal, or BuildContext.
-library app_router;
+library approuter;
 
 export 'src/models/back_pressed_result_enum.dart';
 

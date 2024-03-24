@@ -1,4 +1,4 @@
-import 'package:approuter/app_router.dart';
+import 'package:approuter/approuter.dart';
 import 'package:approuter_example/home/route/home_route.dart';
 import 'package:flutter/material.dart';
 

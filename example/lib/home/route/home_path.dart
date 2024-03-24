@@ -1,4 +1,4 @@
-import 'package:approuter/app_router.dart';
+import 'package:approuter/approuter.dart';
 import 'package:approuter_example/routes/app_routes.dart';
 
 class HomePath extends PagePath {

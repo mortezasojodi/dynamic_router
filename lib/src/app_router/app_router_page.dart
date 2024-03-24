@@ -1,6 +1,6 @@
 import 'dart:async';
 
-import 'package:approuter/app_router.dart';
+import 'package:approuter/approuter.dart';
 import 'package:flutter/material.dart';
 
 extension BeamerExtensions on BuildContext {
