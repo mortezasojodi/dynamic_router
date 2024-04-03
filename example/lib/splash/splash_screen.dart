@@ -12,18 +12,29 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    Future.delayed(const Duration(seconds: 1)).then((value) {
-      AppRouter.pushPage(HomeRoute(), context: context);
-    });
+    // Future.delayed(const Duration(seconds: 1)).then((value) {
+    //   AppRouter.pushAndRemoveUntil(HomeRoute(), (s) => false, context: context);
+    // });
     super.initState();
+  }
+
+  routeToHome() {
+    AppRouter.pushAndRemoveUntil(HomeRoute(), (s) => false, context: context);
   }
 
   @override
   Widget build(BuildContext context) {
-    return const Scaffold(
-      backgroundColor: Colors.blue,
-      body: Text(
-        "Splash",
+    return Scaffold(
+      body: Center(
+        child: ElevatedButton(
+          style: TextButton.styleFrom(
+            backgroundColor: Colors.blue,
+          ),
+          onPressed: routeToHome,
+          child: const Text(
+            "to Home",
+          ),
+        ),
       ),
     );
   }

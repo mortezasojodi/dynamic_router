@@ -102,7 +102,7 @@ class PPageStack<P extends PagePath> {
     PAbstractPage<P, R> page, {
     DuplicatePageKeyAction? onDuplicateKey,
   }) {
-    if (_pages.length > 1) _pages.removeAt(_pages.length - 1);
+    _pages.removeAt(_pages.length - 1);
     final future = _pushNoFire<R>(page, onDuplicateKey ?? this.onDuplicateKey);
     _firePathChange<R>(page);
     return future;

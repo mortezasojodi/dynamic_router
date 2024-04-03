@@ -1,7 +1,7 @@
 import 'package:dynamic_router/approuter.dart';
 import 'package:flutter/widgets.dart';
 
-class PageStackRouterDelegate extends RouterDelegate<PageStackConfiguration>
+class DynamicRouterDelegate extends RouterDelegate<PageStackConfiguration>
     with
         ChangeNotifier,
         PopNavigatorRouterDelegateMixin<PageStackConfiguration> {
@@ -9,7 +9,7 @@ class PageStackRouterDelegate extends RouterDelegate<PageStackConfiguration>
   final PageStack pageStack;
   final GlobalKey<NavigatorState>? navkey;
   final TransitionDelegate<dynamic> transitionDelegate;
-  PageStackRouterDelegate(
+  DynamicRouterDelegate(
     this.pageStack, {
     this.navkey,
     this.observers = const <NavigatorObserver>[],

@@ -1,9 +1,9 @@
+import 'package:dynamic_router/approuter.dart';
 import 'package:flutter/widgets.dart';
 
-import '../page_stack/configuration.dart';
-import '../page_stacks/configuration.dart';
-import '../pages/abstract.dart';
-import 'page_state_mixin.dart';
+abstract class IPagePath {
+  PAbstractMaterialPage? tryParse(RouteInformation ri);
+}
 
 /// Describes a location within the app, corresponds to location + state.
 /// Can be used to navigate to a page recovering its state.
@@ -128,5 +128,9 @@ class PagePath {
       path: uri.path,
       queryParameters: queryParameters.isEmpty ? null : queryParameters,
     );
+  }
+
+  PAbstractMaterialPage? tryParse(RouteInformation ri) {
+    return null;
   }
 }

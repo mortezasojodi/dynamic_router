@@ -13,7 +13,7 @@ extension BeamerExtensions on BuildContext {
     bool stacked = true,
     bool replaceRouteInformation = false,
   }) {
-    var delegate = Router.of(this).routerDelegate as PageStackRouterDelegate;
+    var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
     return delegate.pageStack.push<R>(page);
   }
 
@@ -32,7 +32,7 @@ extension BeamerExtensions on BuildContext {
   }) {
     assert(debugCheckHasMaterialLocalizations(context));
 
-    var delegate = Router.of(this).routerDelegate as PageStackRouterDelegate;
+    var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
 
     Widget child = builder(context);
     final OverlayEntry overlayEntry = OverlayEntry(
@@ -67,12 +67,12 @@ extension BeamerExtensions on BuildContext {
     bool stacked = true,
     bool replaceRouteInformation = false,
   }) {
-    var delegate = Router.of(this).routerDelegate as PageStackRouterDelegate;
+    var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
     return delegate.pageStack.pushReplacmentPage<R>(page);
   }
 
   void popPage([dynamic data]) {
-    var delegate = Router.of(this).routerDelegate as PageStackRouterDelegate;
+    var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
     delegate.pageStack.pop(this, data);
   }
 
@@ -86,7 +86,7 @@ extension BeamerExtensions on BuildContext {
     bool stacked = true,
     bool replaceRouteInformation = false,
   }) {
-    var delegate = Router.of(this).routerDelegate as PageStackRouterDelegate;
+    var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
     return delegate.pageStack.pushAndRemoveUntil(page, routePredicate);
   }
 }

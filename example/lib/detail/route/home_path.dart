@@ -2,11 +2,11 @@ import 'package:dynamic_router/approuter.dart';
 import 'package:approuter_example/routes/app_routes.dart';
 import 'package:flutter/material.dart';
 
-class SplashPath extends PagePath {
-  static const _location = Approutes.splashRoute;
-  static const pagekey = Approutes.splashRoute;
+class HomeDetailPath extends PagePath {
+  static const _location = Approutes.homeDetailRoute;
+  static const pagekey = Approutes.homeDetailRoute;
 
-  const SplashPath() : super(key: pagekey);
+  const HomeDetailPath() : super(key: pagekey);
 
   @override
   PAbstractMaterialPage? tryParse(RouteInformation ri) {
