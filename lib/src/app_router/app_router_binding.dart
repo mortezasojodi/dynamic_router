@@ -104,6 +104,42 @@ class AppRouter {
       barrierDismissible: barrierDismissible,
     );
   }
+
+  static Future showDialogRoute(
+      {required Widget child,
+      required BuildContext context,
+      Bindings? dependecy,
+      bool barrierDismissible = true,
+      Object? arguments,
+      double? width = 300,
+      double? height = 146,
+      AlignmentGeometry? alignment,
+      Color? barrierColor}) {
+    Dialog customDialog = Dialog(
+      backgroundColor: Colors.transparent,
+      surfaceTintColor: Colors.transparent,
+      elevation: 0,
+      alignment: alignment,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(16)),
+      child: Container(
+          decoration: BoxDecoration(
+            borderRadius: BorderRadius.circular(12),
+            color: Colors.transparent,
+          ),
+          child: child),
+    );
+    if (dependecy != null) {
+      dependecy.dependencies();
+    }
+
+    return context.showDialogRoute(
+      context: context,
+      routeSettings: RouteSettings(arguments: arguments),
+      builder: (BuildContext context) => customDialog,
+      barrierColor: barrierColor ?? Colors.black.withOpacity(.4),
+      barrierDismissible: barrierDismissible,
+    );
+  }
 }
 
 Future openWebDilog(Bindings? dependecy,

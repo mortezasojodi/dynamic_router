@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:collection/collection.dart';
+import 'package:dynamic_router/approuter.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -310,6 +311,13 @@ class PPageStack<P extends PagePath> {
   /// Otherwise returns `false`. This may signal to shut down the app
   /// or to close some widgets wrapping this stack.
   Future<BackPressedResult> onBackPressed() async {
+    if (_currentOverlay.length > 0) {
+      var last = _currentOverlay.last;
+      last.completer.complete(null);
+      last.data.remove();
+      _currentOverlay.removeLast();
+      return BackPressedResult.keep;
+    }
     final oldPages = [..._pages];
     final page = oldPages.lastOrNull;
     if (page == null) {
@@ -324,6 +332,12 @@ class PPageStack<P extends PagePath> {
       }
     }
 
+    if (page is PageStateMixin) {
+      final result = await (page as PageStateMixin).onBackPressed();
+      if (result == BackPressedResult.keep) {
+        return result;
+      }
+    }
     // _pages can never be empty. Only pop if there are at least 2.
     if (_pages.length >= 2) {
       _pages.removeLast();

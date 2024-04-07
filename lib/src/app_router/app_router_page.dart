@@ -58,6 +58,45 @@ extension BeamerExtensions on BuildContext {
         context);
   }
 
+  Future showDialogRoute<R>({
+    required BuildContext context,
+    required WidgetBuilder builder,
+    bool rootOverlay = true,
+    bool barrierDismissible = true,
+    Color? barrierColor,
+    String? barrierLabel,
+    bool useSafeArea = true,
+    bool useRootNavigator = true,
+    RouteSettings? routeSettings,
+    Offset? anchorPoint,
+    TraversalEdgeBehavior? traversalEdgeBehavior,
+  }) {
+    assert(debugCheckHasMaterialLocalizations(context));
+
+    var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
+
+    Widget child = builder(context);
+    var page = RoutePage(
+        child: Semantics(
+          scopesRoute: true,
+          explicitChildNodes: true,
+          child: DisplayFeatureSubScreen(
+            anchorPoint: anchorPoint,
+            child: child,
+          ),
+        ),
+        classFactoryKey: child.hashCode.toString());
+
+    return delegate.pageStack.push(page);
+    // return delegate.pageStack.pushOverLay(
+    //     IndexedData<OverlayEntry>(
+    //         id: child.key.toString(),
+    //         rootOverlay: true,
+    //         data: overlayEntry,
+    //         completer: Completer()),
+    //     context);
+  }
+
   Future<R?> pushReplacmentPage<R>(
     PAbstractPage<PagePath, R> page, {
     Object? data,
@@ -89,4 +128,15 @@ extension BeamerExtensions on BuildContext {
     var delegate = Router.of(this).routerDelegate as DynamicRouterDelegate;
     return delegate.pageStack.pushAndRemoveUntil(page, routePredicate);
   }
+}
+
+class RoutePage extends StatelessMaterialPage {
+  RoutePage({
+    required Widget child,
+    required String classFactoryKey,
+  }) : super(
+          key: ValueKey(classFactoryKey),
+          child: child,
+          factoryKey: classFactoryKey,
+        );
 }
