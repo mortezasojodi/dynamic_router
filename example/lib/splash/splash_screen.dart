@@ -1,5 +1,5 @@
 import 'package:dynamic_router/approuter.dart';
-import 'package:approuter_example/home/route/home_route.dart';
+import 'package:dynamic_router_example/home/route/home_route.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {

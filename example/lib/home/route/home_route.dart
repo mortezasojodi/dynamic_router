@@ -1,7 +1,8 @@
 import 'package:dynamic_router/approuter.dart';
-import 'package:approuter_example/home/home_screen.dart';
-import 'package:approuter_example/home/route/home_path.dart';
-import 'package:approuter_example/routes/app_routes.dart';
+import 'package:dynamic_router_example/home/home_screen.dart';
+import 'package:dynamic_router_example/home/route/home_path.dart';
+import 'package:dynamic_router_example/routes/app_routes.dart';
+
 import 'package:flutter/material.dart';
 
 class HomeRoute extends StatelessMaterialPage {
