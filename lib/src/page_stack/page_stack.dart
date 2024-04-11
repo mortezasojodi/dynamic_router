@@ -311,7 +311,7 @@ class PPageStack<P extends PagePath> {
   /// Otherwise returns `false`. This may signal to shut down the app
   /// or to close some widgets wrapping this stack.
   Future<BackPressedResult> onBackPressed() async {
-    if (_currentOverlay.length > 0) {
+    if (_currentOverlay.isNotEmpty) {
       var last = _currentOverlay.last;
       last.completer.complete(null);
       last.data.remove();

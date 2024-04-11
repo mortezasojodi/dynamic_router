@@ -2,10 +2,11 @@ import 'package:dynamic_router/approuter.dart';
 import 'package:flutter/material.dart';
 
 abstract class DynamicRouter {
-  // static DynamicRouterDelegate? _delegate;
+  static DynamicRouterDelegate? _delegate;
   static PageStackRouteInformationParser? _provider;
   // static RouteInformationParser? _infoProvider;
-  // static PPageStack<PagePath>? pageStack;
+  static BackButtonDispatcher? _backButtonDispatcher;
+  static PPageStack<PagePath>? _pageStack;
 
   static RouterConfig<Object>? routerConfig({
     String initialPath = '',
@@ -17,15 +18,18 @@ abstract class DynamicRouter {
     List<NavigatorObserver> observers = const [],
     // List<RouteMiddleware> middlewares = const [],
   }) {
-    pageStack = pageStack ??
+    _pageStack ??= pageStack ??
         PageStack(
           bottomPage: homePage,
         );
-    delegate = delegate ??
+
+    _delegate ??= delegate ??
         DynamicRouterDelegate(
-          pageStack,
+          _pageStack!,
         );
-    backButtonDispatcher = backButtonDispatcher ?? RootBackButtonDispatcher();
+
+    _backButtonDispatcher ??=
+        backButtonDispatcher ?? PageStackBackButtonDispatcher(_pageStack!);
     // defaultRouteBuilder = routeBuilder ?? materialRouteBuilder;
 
     // _provider ??= RouteflyInformationParser(
@@ -53,10 +57,9 @@ abstract class DynamicRouter {
     // ]);
 
     return RouterConfig(
-      routerDelegate: delegate,
-      routeInformationParser: _provider,
-      // routeInformationProvider: _infoProvider,
-      backButtonDispatcher: RootBackButtonDispatcher(),
-    );
+        routerDelegate: _delegate!,
+        routeInformationParser: _provider,
+        // routeInformationProvider: _infoProvider,
+        backButtonDispatcher: _backButtonDispatcher);
   }
 }

@@ -1,12 +1,13 @@
 import 'package:dynamic_router/approuter.dart';
+import 'package:dynamic_router_example/inner_detail/route/inner_detail_route.dart';
 import 'package:flutter/material.dart';
 
 class HomeDetailScreen extends StatelessWidget {
   final int id;
   const HomeDetailScreen({super.key, required this.id});
 
-  pop(BuildContext context) {
-    AppRouter.pop(context);
+  toInnerDetail(BuildContext context) {
+    AppRouter.pushPage(InnerDetailRoute(), context: context);
   }
 
   @override
@@ -21,9 +22,9 @@ class HomeDetailScreen extends StatelessWidget {
               style: TextButton.styleFrom(
                 backgroundColor: Colors.blue,
               ),
-              onPressed: () => pop(context),
+              onPressed: () => toInnerDetail(context),
               child: const Text(
-                "pop",
+                "to inner Detail",
               ),
             ),
           ],

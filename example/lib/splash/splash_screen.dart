@@ -19,7 +19,7 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   routeToHome() {
-    AppRouter.pushAndRemoveUntil(HomeRoute(), (s) => false, context: context);
+    AppRouter.pushPage(HomeRoute(), context: context);
   }
 
   @override
