@@ -4,7 +4,6 @@ import 'package:dynamic_router_example/extentions/box_extention.dart';
 import 'package:dynamic_router_example/inner_detail/route/inner_detail_route.dart';
 import 'package:dynamic_router_example/routes/app_routes.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});

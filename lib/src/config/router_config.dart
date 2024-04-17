@@ -8,12 +8,13 @@ abstract class DynamicRouter {
   static BackButtonDispatcher? _backButtonDispatcher;
   static PPageStack<PagePath>? _pageStack;
 
-  static RouterConfig<Object>? routerConfig({
+  static RouterConfig<Object> routerConfig({
     String initialPath = '',
     DynamicRouterDelegate? delegate,
     PageStack? pageStack,
     BackButtonDispatcher? backButtonDispatcher,
     required PAbstractPage<PagePath, dynamic> homePage,
+    final GlobalKey<NavigatorState>? navigatorkey,
     String notFoundPath = '404',
     List<NavigatorObserver> observers = const [],
     // List<RouteMiddleware> middlewares = const [],
@@ -23,10 +24,8 @@ abstract class DynamicRouter {
           bottomPage: homePage,
         );
 
-    _delegate ??= delegate ??
-        DynamicRouterDelegate(
-          _pageStack!,
-        );
+    _delegate ??=
+        delegate ?? DynamicRouterDelegate(_pageStack!, navkey: navigatorkey);
 
     _backButtonDispatcher ??=
         backButtonDispatcher ?? PageStackBackButtonDispatcher(_pageStack!);
