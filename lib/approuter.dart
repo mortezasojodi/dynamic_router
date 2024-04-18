@@ -54,4 +54,5 @@ export 'src/app_router/app_router_page.dart';
 export 'src/app_router/app_page_router.dart';
 export 'src/models/route_model.dart';
 export 'src/app_router/app_router_binding.dart';
+export 'src/models/binding.dart';
 export 'src/config/router_config.dart';
