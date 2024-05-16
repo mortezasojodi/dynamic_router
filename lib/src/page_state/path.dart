@@ -68,6 +68,7 @@ class PagePath {
 
   static List<PagePath> fromMaps(List maps) {
     return maps
+        .where((e) => e != null)
         .cast<Map<String, dynamic>>()
         .map(PagePath._fromMap)
         .toList(growable: false);
@@ -130,7 +131,11 @@ class PagePath {
     );
   }
 
-  PAbstractMaterialPage? tryParse(RouteInformation ri) {
+  PAbstractPage? tryParse(RouteInformation ri) {
+    return null;
+  }
+
+  PAbstractPage<PagePath, dynamic>? creatPage(Map<String, dynamic> state) {
     return null;
   }
 }

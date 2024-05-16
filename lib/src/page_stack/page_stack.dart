@@ -31,6 +31,7 @@ typedef AppRoutePredicate = bool Function(String route);
 ///
 /// [P] is the base class for all app's page paths.
 class PPageStack<P extends PagePath> {
+  final List<PagePath> pathes;
   final _pages = <PAbstractPage<P, dynamic>>[];
   List<IndexedData<OverlayEntry>> _currentOverlay = [];
   UnmodifiableListView<PAbstractPage<P, dynamic>> get pages =>
@@ -55,6 +56,7 @@ class PPageStack<P extends PagePath> {
   PPageStack({
     required PAbstractPage<P, dynamic> bottomPage,
     this.createPage,
+    this.pathes = const [],
     this.onDuplicateKey = DuplicatePageKeyAction.bringOld,
     this.routeInformationParser,
   }) {
@@ -428,21 +430,26 @@ class PPageStack<P extends PagePath> {
       return;
     }
 
+    // Future.delayed(Duration(seconds: 1)).then((value) {
     unawaited(_pushNoFire(page, onDuplicateKey));
+    // _firePathChange(_pages.last);
+    // });
   }
 
   PAbstractPage<P, dynamic>? _createPage(PagePath path) {
-    if (createPage == null || path.factoryKey == null) {
+    if (path.factoryKey == null) {
       return null;
     }
 
-    final page = createPage!(path.factoryKey!, path.state);
+    final page = pathes
+        .lastWhereOrNull((e) => e.factoryKey == path.factoryKey)
+        ?.creatPage(path.state);
     if (page == null) {
       return null;
     }
-
+    page as PAbstractPage<P, dynamic>?;
     page.state?.setStateMap(path.state);
-    return page;
+    return page as PAbstractPage<P, dynamic>?;
   }
 
   Future<void> _schedulePageDisposal<R>(PAbstractPage<P, R> page) async {

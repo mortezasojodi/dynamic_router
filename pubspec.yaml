@@ -1,11 +1,11 @@
 name: dynamic_router
 description: "router for Flutter based on Navigation Api"
-version: 0.0.6
+version: 0.0.7
 repository: https://github.com/mortezasojodi/approuter
 
 environment:
-  sdk: '>=3.3.0 <4.0.0'
-  flutter: '>=3.3.0'
+  sdk: '>=3.4.0 <4.0.0'
+  flutter: '>=3.4.0'
 
 dependencies:
   flutter:
