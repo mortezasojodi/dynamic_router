@@ -69,7 +69,7 @@ class AppRouter {
   }
 
   static void popsheet<T extends Object?>(BuildContext context, [T? result]) {
-    Navigator.of(context).pop();
+    context.popPage(result);
   }
 
   static Future showDialog(
@@ -92,6 +92,31 @@ class AppRouter {
       useSafeArea: useSafeArea,
       context: context,
       builder: (BuildContext context) => child,
+      barrierColor: barrierColor ?? Colors.black.withOpacity(.4),
+      barrierDismissible: barrierDismissible,
+    );
+  }
+
+  static Future showDialogWithRoute(
+      {required PAbstractMaterialPage<PagePath, dynamic> child,
+      required BuildContext context,
+      Bindings? bindings,
+      bool barrierDismissible = true,
+      Offset? anchorPoint,
+      String? barrierLabel,
+      TraversalEdgeBehavior? traversalEdgeBehavior,
+      bool useSafeArea = true,
+      Color? barrierColor}) {
+    if (bindings != null) {
+      bindings.dependencies();
+    }
+    return context.showDialog(
+      anchorPoint: anchorPoint,
+      barrierLabel: barrierLabel,
+      traversalEdgeBehavior: traversalEdgeBehavior,
+      useSafeArea: useSafeArea,
+      context: context,
+      builder: (BuildContext context) => child.child,
       barrierColor: barrierColor ?? Colors.black.withOpacity(.4),
       barrierDismissible: barrierDismissible,
     );
