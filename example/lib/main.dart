@@ -17,6 +17,11 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
+  var dynamicRouter = DynamicRouter().routerConfig(
+    homePage: SplashRoute(),
+    // delegate: routerDelegate
+    // backButtonDispatcher:  PageStackBackButtonDispatcher(),
+  );
   // late PPageStack<PagePath> pageStack;
   // late DynamicRouterDelegate routerDelegate;
   @override
@@ -33,11 +38,7 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp.router(
-      routerConfig: DynamicRouter.routerConfig(
-        homePage: SplashRoute(),
-        // delegate: routerDelegate
-        // backButtonDispatcher:  PageStackBackButtonDispatcher(),
-      ),
+      routerConfig: dynamicRouter,
       theme: ThemeData(
         elevatedButtonTheme: ElevatedButtonThemeData(
             style: TextButton.styleFrom(

@@ -1,14 +1,14 @@
 import 'package:dynamic_router/approuter.dart';
 import 'package:flutter/material.dart';
 
-abstract class DynamicRouter {
-  static DynamicRouterDelegate? _delegate;
-  static PageStackRouteInformationParser? _provider;
+class DynamicRouter {
+  DynamicRouterDelegate? _delegate;
+  PageStackRouteInformationParser? _provider;
   // static RouteInformationParser? _infoProvider;
-  static BackButtonDispatcher? _backButtonDispatcher;
-  static PPageStack<PagePath>? _pageStack;
+  BackButtonDispatcher? _backButtonDispatcher;
+  PPageStack<PagePath>? _pageStack;
 
-  static RouterConfig<Object> routerConfig({
+  RouterConfig<Object> routerConfig({
     String initialPath = '',
     DynamicRouterDelegate? delegate,
     PageStack? pageStack,
