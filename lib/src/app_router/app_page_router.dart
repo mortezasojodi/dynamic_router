@@ -69,7 +69,7 @@ class AppRouter {
   }
 
   static void popsheet<T extends Object?>(BuildContext context, [T? result]) {
-    context.popPage(result);
+    Navigator.pop(context);
   }
 
   static Future showDialog(
