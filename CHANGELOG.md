@@ -9,3 +9,8 @@
 ## 0.0.7
 
 * Dialog Support
+
+## 1.0.1
+
+* Some Bug Fixes
+

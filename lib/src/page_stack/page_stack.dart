@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:collection/collection.dart';
 import 'package:dynamic_router/approuter.dart';
+import 'package:dynamic_router/src/pages/dialog.dart';
 import 'package:flutter/widgets.dart';
 import 'package:meta/meta.dart';
 import 'package:rxdart/rxdart.dart';
@@ -33,9 +34,13 @@ typedef AppRoutePredicate = bool Function(String route);
 class PPageStack<P extends PagePath> {
   final List<PagePath> pathes;
   final _pages = <PAbstractPage<P, dynamic>>[];
+  final _dialogs = <PAbstractPage<P, dynamic>>[];
   List<IndexedData<OverlayEntry>> _currentOverlay = [];
+
   UnmodifiableListView<PAbstractPage<P, dynamic>> get pages =>
       UnmodifiableListView<PAbstractPage<P, dynamic>>(_pages);
+  UnmodifiableListView<PAbstractPage<P, dynamic>> get dialogs =>
+      UnmodifiableListView<PAbstractPage<P, dynamic>>(_dialogs);
 
   /// A factory to create pages from their serialized states.
   /// It is called when a popped page should be re-created on back-forward
@@ -127,6 +132,18 @@ class PPageStack<P extends PagePath> {
         page.createPopEvent(data: data, cause: PopCause.backButton),
       );
       _firePathChange(_pages.last);
+    } else {
+      if (_dialogs.isNotEmpty) {
+        final oldPages = [..._dialogs];
+        var page = oldPages.lastOrNull;
+        _pages.removeAt(oldPages.length - 1);
+        handleRemoved(
+          oldPages.elementAtOrNullIncludingNegative(oldPages.length - 2),
+          page!,
+          page.createPopEvent(data: data, cause: PopCause.backButton),
+        );
+        _firePathChange(_pages.last);
+      }
     }
   }
 
@@ -166,7 +183,9 @@ class PPageStack<P extends PagePath> {
 
   Future<R?> _pushNewPageNoFire<R>(PAbstractPage<P, R> page) {
     _pages.add(page);
-
+    if (page is PAbstractMaterialPageDialog) {
+      _dialogs.add(page);
+    }
     final state = page.state;
     if (state != null) {
       state.events.listen((event) => _onPageEvent<R>(page, event));
