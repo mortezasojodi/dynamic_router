@@ -122,12 +122,14 @@ class PPageStack<P extends PagePath> {
       last.completer.complete(data);
       last.data.remove();
       _currentOverlay.removeLast();
-    } else if (_pages.length > 1) {
+    } else if (_pages.length > 0) {
       final oldPages = [..._pages];
       var page = oldPages.lastOrNull;
       _pages.removeAt(oldPages.length - 1);
       handleRemoved(
-        oldPages.elementAtOrNullIncludingNegative(oldPages.length - 2),
+        oldPages.length > 1
+            ? oldPages.elementAtOrNullIncludingNegative(oldPages.length - 2)
+            : null,
         page!,
         page.createPopEvent(data: data, cause: PopCause.backButton),
       );
