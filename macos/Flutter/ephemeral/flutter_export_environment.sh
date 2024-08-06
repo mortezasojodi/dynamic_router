@@ -1,6 +1,6 @@
 #!/bin/sh
 # This is a generated file; do not edit or check into version control.
-export "FLUTTER_ROOT=/Users/morteza/Documents/fluttersdk/flutter"
+export "FLUTTER_ROOT=/Users/morteza/Documents/fluttersdknew/flutter"
 export "FLUTTER_APPLICATION_PATH=/Users/morteza/Desktop/Project/vlm/dynamic_router"
 export "COCOAPODS_PARALLEL_CODE_SIGN=true"
 export "FLUTTER_BUILD_DIR=build"
