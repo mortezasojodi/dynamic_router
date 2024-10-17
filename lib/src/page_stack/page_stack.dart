@@ -122,7 +122,7 @@ class PPageStack<P extends PagePath> {
       last.completer.complete(data);
       last.data.remove();
       _currentOverlay.removeLast();
-    } else if (_pages.length > 0) {
+    } else if (_pages.length > 1) {
       final oldPages = [..._pages];
       var page = oldPages.lastOrNull;
       _pages.removeAt(oldPages.length - 1);
