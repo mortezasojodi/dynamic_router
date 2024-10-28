@@ -135,6 +135,14 @@ class PagePath {
     return null;
   }
 
+  RegExp get regx => RegExp(r'^' + location + r'$');
+
+  PagePath? tryParseRoute(RouteInformation ri) {
+    final matches = regx.firstMatch(ri.location ?? '');
+    if (matches == null) return null;
+    return this;
+  }
+
   PAbstractPage<PagePath, dynamic>? creatPage(Map<String, dynamic> state) {
     return null;
   }
